@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Thanksgiving, Supu & Sanju!</title>
+    <style>
+        :root {
+            --primary-autumn: #d95325;
+            --secondary-gold: #f4a261;
+            --deep-brown: #3e2723;
+            --cream-bg: #fffbf2;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 15px;
+            background-color: var(--cream-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--deep-brown);
+            overflow-x: hidden;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        /* Falling Autumn Leaves Background Animation */
+        .leaves-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+        }
+
+        .leaf {
+            position: absolute;
+            top: -10%;
+            font-size: 1.8rem;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateY(50vh) translateX(30px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(110vh) translateX(-30px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Card Container Styling - Mobile Friendly */
+        .card-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 500px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.15);
+            overflow: hidden;
+            text-align: center;
+            border: 3px solid var(--secondary-gold);
+            animation: popUp 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            box-sizing: border-box;
+            margin: auto;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-autumn), var(--secondary-gold));
+            color: white;
+            padding: 24px 15px;
+            animation: slideDown 1s ease-out;
+        }
+
+            .card-header h1 {
+                margin: 0;
+                font-size: 1.8rem;
+                letter-spacing: 0.5px;
+                text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+            }
+
+            .card-header p {
+                margin: 8px 0 0;
+                font-size: 0.95rem;
+                font-style: italic;
+            }
+
+        .card-body {
+            padding: 25px 20px;
+        }
+
+        .turkey-icon {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: floatTurkey 3s ease-in-out infinite;
+        }
+
+        .nicknames {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-autumn);
+            margin-bottom: 15px;
+            animation: pulseText 2s ease-in-out infinite;
+        }
+
+        .message {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #5d4037;
+            margin-bottom: 25px;
+            animation: fadeInText 1.5s ease-in-out;
+        }
+
+        .btn {
+            background-color: var(--primary-autumn);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 12px rgba(217, 83, 37, 0.4);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+            .btn:active {
+                transform: scale(0.95);
+            }
+
+        .card-footer {
+            background-color: #fcf8f2;
+            padding: 12px;
+            font-size: 0.8rem;
+            color: #8d6e63;
+            border-top: 1px solid #efebe9;
+        }
+
+        /* Dynamic Burst Animation Elements */
+        .burst-item {
+            position: absolute;
+            font-size: 1.8rem;
+            z-index: 20;
+            pointer-events: none;
+            animation: burstUpAndFall 1.8s ease-out forwards;
+        }
+
+        @keyframes burstUpAndFall {
+            0% {
+                transform: translate(0, 0) scale(0.5) rotate(0deg);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(var(--rand-x), var(--rand-y)) scale(1.2) rotate(180deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(var(--final-x), 300px) scale(0.9) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Keyframe Animations */
+        @keyframes popUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatTurkey {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-8px) rotate(4deg);
+            }
+        }
+
+        @keyframes pulseText {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media query for larger screens/desktops */
+        @media (min-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            .card-container {
+                max-width: 600px;
+                border-radius: 20px;
+            }
+
+            .card-header h1 {
+                font-size: 2.3rem;
+            }
+
+            .nicknames {
+                font-size: 2.2rem;
+            }
+
+            .message {
+                font-size: 1.15rem;
+            }
+
+            .turkey-icon {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background Leaves -->
+    <div class="leaves-container">
+        <div class="leaf" style="left: 10%; animation-duration: 7s; animation-delay: 0s;">🍁</div>
+        <div class="leaf" style="left: 25%; animation-duration: 9s; animation-delay: 2s;">🍂</div>
+        <div class="leaf" style="left: 40%; animation-duration: 6s; animation-delay: 1s;">🍁</div>
+        <div class="leaf" style="left: 60%; animation-duration: 8s; animation-delay: 3s;">🍃</div>
+        <div class="leaf" style="left: 75%; animation-duration: 10s; animation-delay: 0.5s;">🍂</div>
+        <div class="leaf" style="left: 90%; animation-duration: 7s; animation-delay: 4s;">🍁</div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card-container" id="cardContainer">
+        <div class="card-header">
+            <h1>🍁 Happy Thanksgiving! 🍁</h1>
+            <p>To the two people who make life infinitely brighter</p>
+        </div>
+
+        <div class="card-body">
+            <div class="turkey-icon">🦃</div>
+            <div class="nicknames">Supu & Sanju</div>
+
+            <div class="message">
+                This Thanksgiving, I am counting my blessings, and having both of you bitches in my corner tops the list. Thank you for the endless laughs, the unforgettable memories, and for always being my favorite ones to share life's journey with. Wishing you a season filled with warmth, love, and way too much money!
+            </div>
+
+            <button class="btn" id="gratitudeBtn" onclick="triggerCelebration()">Click for Gratitude ✨</button>
+        </div>
+
+        <div class="card-footer">
+            Made with warmth and gratitude • Happy Thanksgiving 2026!
+        </div>
+    </div>
+
+    <script>
+        function triggerCelebration() {
+            const symbols = ['❤️', '💖', '💸', '💵', '🧡', '💰', '✨'];
+            const btn = document.getElementById('gratitudeBtn');
+            const rect = btn.getBoundingClientRect();
+
+            // Center point of the button relative to the viewport
+            const startX = rect.left + rect.width / 2;
+            const startY = rect.top + rect.height / 2;
+
+            // Generate floating elements optimized for screen size
+            for (let i = 0; i < 25; i++) {
+                const item = document.createElement('div');
+                item.className = 'burst-item';
+                item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+                // Random travel vectors adapted for mobile bounds
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 60 + Math.random() * 120;
+                const randX = Math.cos(angle) * distance;
+                const randY = Math.sin(angle) * distance - 80;
+                const finalX = randX + (Math.random() * 60 - 30);
+
+                item.style.left = `${startX}px`;
+                item.style.top = `${startY}px`;
+                item.style.setProperty('--rand-x', `${randX}px`);
+                item.style.setProperty('--rand-y', `${randY}px`);
+                item.style.setProperty('--final-x', `${finalX}px`);
+
+                document.body.appendChild(item);
+
+                // Clean up elements after animation finishes
+                setTimeout(() => {
+                    item.remove();
+                }, 1800);
+            }
+        }
+    </script>
+
+</body>
+</html>
